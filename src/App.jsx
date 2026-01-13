@@ -7,11 +7,13 @@ import ArtistsPage from './pages/ArtistsPage';
 import ServicesPage from './pages/ServicesPage';
 import ContactPage from './pages/ContactPage';
 import ScrollToTop from './components/ScrollToTop';
+import BackToTop from './components/BackToTop';
 
 function App() {
   return (
     <Router>
       <ScrollToTop />
+      <BackToTop />
       <div className="bg-black min-h-screen text-white font-sans selection:bg-dapper-gold selection:text-black flex flex-col">
         <Navbar />
         <main className="flex-grow">
