@@ -14,9 +14,9 @@ function App() {
     <Router>
       <ScrollToTop />
       <BackToTop />
-      <div className="bg-black min-h-screen text-white font-sans selection:bg-dapper-gold selection:text-black flex flex-col">
+      <div className="bg-black min-h-screen text-white font-sans selection:bg-dapper-gold selection:text-black flex flex-col overflow-x-hidden w-full">
         <Navbar />
-        <main className="flex-grow">
+        <main className="flex-grow w-full">
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/artists" element={<ArtistsPage />} />

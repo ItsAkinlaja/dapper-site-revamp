@@ -44,7 +44,12 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className={`fixed w-full z-[100] transition-all duration-300 ${isOpen ? 'bg-black' : (scrolled || location.pathname !== '/' ? 'bg-black/80 backdrop-blur-md border-b border-white/5' : 'bg-transparent')} ${scrolled || location.pathname !== '/' ? 'py-4' : 'py-6'}`}>
+    <motion.nav 
+      initial={location.pathname !== '/' ? { y: -100 } : { y: 0 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className={`fixed w-full z-[100] transition-colors duration-300 ${isOpen ? 'bg-black' : (scrolled || location.pathname !== '/' ? 'bg-black/80 backdrop-blur-md border-b border-white/5' : 'bg-transparent')} ${scrolled || location.pathname !== '/' ? 'py-4' : 'py-6'}`}
+    >
       <div className="container mx-auto px-4 flex justify-between items-center">
         <Link to="/" className="text-2xl font-bold tracking-tighter text-white z-50 relative">
           DAPPER
@@ -127,7 +132,7 @@ const Navbar = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </nav>
+    </motion.nav>
   );
 };
 
