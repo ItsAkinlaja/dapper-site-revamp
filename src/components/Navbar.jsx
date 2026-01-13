@@ -44,7 +44,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className={`fixed w-full z-[100] transition-all duration-300 ${isOpen ? 'bg-black' : (scrolled || location.pathname !== '/' ? 'bg-black/80 backdrop-blur-md py-4 border-b border-white/5' : 'bg-transparent py-6')}`}>
+    <nav className={`fixed w-full z-[100] transition-all duration-300 ${isOpen ? 'bg-black' : (scrolled || location.pathname !== '/' ? 'bg-black/80 backdrop-blur-md border-b border-white/5' : 'bg-transparent')} ${scrolled || location.pathname !== '/' ? 'py-4' : 'py-6'}`}>
       <div className="container mx-auto px-4 flex justify-between items-center">
         <Link to="/" className="text-2xl font-bold tracking-tighter text-white z-50 relative">
           DAPPER
