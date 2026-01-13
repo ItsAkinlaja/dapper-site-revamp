@@ -1,16 +1,44 @@
-# React + Vite
+# Dapper Music Ent. - Website Revamp
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, high-energy, and fully responsive website built for Dapper Music Ent. to showcase their artist roster, events, and cultural impact.
 
-Currently, two official plugins are available:
+**Live Demo:** [https://dappermusicent.netlify.app/](https://dappermusicent.netlify.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## React Compiler
+- **High-Performance Landing Page:** Parallax effects, bold typography, and immersive "concert vibe" visuals.
+- **Interactive Artist Showcase:** "Bursting" animations and spotlight sections for the 7 key artists (Lasmid, Balloranking, TML Vibez, Bhadboi OML, Reeha, T.I Blaze, Cazulee).
+- **Mobile & Tablet Friendly:** Fully responsive design using Tailwind CSS grid and flexbox.
+- **Smooth Animations:** Powered by Framer Motion for scroll reveals, entrance effects, and seamless transitions.
+- **Multi-Page Navigation:** Client-side routing for Home, Artists, Services, and Contact pages.
+- **Netlify Ready:** Configured with `_redirects` for seamless SPA hosting.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech Stack
 
-## Expanding the ESLint configuration
+- **Frontend:** React (Vite)
+- **Styling:** Tailwind CSS
+- **Animations:** Framer Motion
+- **Routing:** React Router DOM
+- **Icons:** React Icons (Lucide/Fa)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Getting Started
+
+1.  **Clone the repository:**
+    ```bash
+    git clone <your-repo-url>
+    ```
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
+3.  **Run the development server:**
+    ```bash
+    npm run dev
+    ```
+
+## Deployment
+
+This project is optimized for Netlify. Simply drag and drop the `dist` folder (after running `npm run build`) or connect your GitHub repository for continuous deployment.
+
+---
+*Built with ❤️ by Timileyin Akinlaja*
