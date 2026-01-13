@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { Menu, X, Instagram, Twitter, Youtube } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
@@ -21,6 +21,15 @@ const Navbar = () => {
     setIsOpen(false);
   }, [location]);
 
+  // Lock body scroll when menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }, [isOpen]);
+
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'Artists', path: '/artists' },
@@ -28,10 +37,18 @@ const Navbar = () => {
     { name: 'Contact', path: '/contact' },
   ];
 
+  const socialLinks = [
+    { icon: <Instagram size={24} />, href: 'https://instagram.com' },
+    { icon: <Twitter size={24} />, href: 'https://twitter.com' },
+    { icon: <Youtube size={24} />, href: 'https://youtube.com' },
+  ];
+
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled || location.pathname !== '/' ? 'bg-dapper-black/95 backdrop-blur-sm py-4 border-b border-white/5' : 'bg-transparent py-6'}`}>
+    <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled || location.pathname !== '/' ? 'bg-black/80 backdrop-blur-md py-4 border-b border-white/5' : 'bg-transparent py-6'}`}>
       <div className="container mx-auto px-4 flex justify-between items-center">
-        <Link to="/" className="text-2xl font-bold tracking-tighter text-white z-50">DAPPER</Link>
+        <Link to="/" className="text-2xl font-bold tracking-tighter text-white z-50 relative">
+          DAPPER
+        </Link>
         
         <div className="hidden md:flex space-x-8">
           {navLinks.map((item) => (
@@ -45,31 +62,72 @@ const Navbar = () => {
           ))}
         </div>
 
-        <button className="md:hidden text-white z-50" onClick={() => setIsOpen(!isOpen)}>
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
+        <button 
+          className="md:hidden text-white z-50 relative hover:text-dapper-gold transition-colors" 
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          {isOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
 
-      {/* Mobile Menu */}
-      {isOpen && (
-        <motion.div 
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="md:hidden absolute top-full left-0 w-full h-screen bg-dapper-black border-t border-white/10 flex flex-col pt-10"
-        >
-          <div className="flex flex-col py-4 px-4 space-y-6 items-center">
-            {navLinks.map((item) => (
-              <Link 
-                key={item.name} 
-                to={item.path} 
-                className={`text-2xl font-bold hover:text-dapper-gold ${location.pathname === item.path ? 'text-dapper-gold' : 'text-white'}`}
-              >
-                {item.name}
-              </Link>
-            ))}
-          </div>
-        </motion.div>
-      )}
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div 
+            initial={{ opacity: 0, x: '100%' }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: '100%' }}
+            transition={{ type: "spring", damping: 25, stiffness: 200 }}
+            className="fixed inset-0 z-40 bg-black/95 backdrop-blur-xl md:hidden flex flex-col justify-center items-center"
+          >
+            {/* Decorative Elements */}
+            <div className="absolute top-1/4 -left-20 w-80 h-80 bg-dapper-gold/10 rounded-full blur-[100px] pointer-events-none" />
+            <div className="absolute bottom-1/4 -right-20 w-80 h-80 bg-purple-900/10 rounded-full blur-[100px] pointer-events-none" />
+
+            <div className="flex flex-col space-y-8 text-center z-10 w-full px-8">
+              {navLinks.map((item, index) => (
+                <motion.div
+                  key={item.name}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 + index * 0.1 }}
+                >
+                  <Link 
+                    to={item.path} 
+                    className={`block text-4xl font-black uppercase tracking-tighter transition-all duration-300 ${
+                      location.pathname === item.path 
+                        ? 'text-transparent bg-clip-text bg-gradient-to-r from-dapper-gold to-yellow-200 scale-105' 
+                        : 'text-white/50 hover:text-white hover:scale-105'
+                    }`}
+                  >
+                    {item.name}
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Mobile Socials */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              className="absolute bottom-12 flex space-x-8"
+            >
+              {socialLinks.map((social, idx) => (
+                <a 
+                  key={idx}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white/50 hover:text-dapper-gold transition-colors transform hover:scale-110"
+                >
+                  {social.icon}
+                </a>
+              ))}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 };
