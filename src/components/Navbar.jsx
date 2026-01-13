@@ -77,13 +77,12 @@ const Navbar = () => {
             initial={{ opacity: 0, x: '100%' }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: '100%' }}
-            transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="fixed inset-0 z-40 bg-black/95 backdrop-blur-xl md:hidden flex flex-col justify-center items-center"
+            transition={{ type: "tween", duration: 0.3 }}
+            className="fixed inset-0 z-40 bg-black md:hidden flex flex-col justify-center items-center"
           >
-            {/* Decorative Elements */}
-            <div className="absolute top-1/4 -left-20 w-80 h-80 bg-dapper-gold/10 rounded-full blur-[100px] pointer-events-none" />
-            <div className="absolute bottom-1/4 -right-20 w-80 h-80 bg-purple-900/10 rounded-full blur-[100px] pointer-events-none" />
-
+            {/* Decorative Elements - Simplified for Performance */}
+            <div className="absolute top-0 right-0 w-full h-full bg-dapper-black opacity-95" />
+            
             <div className="flex flex-col space-y-8 text-center z-10 w-full px-8">
               {navLinks.map((item, index) => (
                 <motion.div
